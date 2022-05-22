@@ -1,9 +1,31 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Form, FormGroup, Input, Label, Col, Button } from "reactstrap";
 
 const FunctionBasedForm = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [responseUserData, setResponseUserData] = useState([]);
+
+  useEffect(() => {
+    const getData = async () => {
+      const response = await fetch(
+        "https://jsonplaceholder.typicode.com/users"
+      );
+      const data = await response.json();
+      console.log(data);
+
+      const users = data.map((item) => ({
+        value: item.id,
+        label: item.name,
+      }));
+
+      setResponseUserData(users);
+    };
+
+    getData();
+  }, []);
+
+  console.log(responseUserData);
 
   const handleSubmit = (event) => {
     event.preventDefault();
