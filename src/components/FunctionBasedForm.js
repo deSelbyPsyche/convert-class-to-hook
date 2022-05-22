@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { Form, FormGroup, Input, Label, Col, Button } from "reactstrap";
+import Select from "react-select";
 
 const FunctionBasedForm = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [responseUserData, setResponseUserData] = useState([]);
+  const [chosenOption, setChosenOption] = useState({});
 
   useEffect(() => {
     const getData = async () => {
@@ -19,7 +21,7 @@ const FunctionBasedForm = () => {
         label: item.name,
       }));
 
-      setResponseUserData(users);
+      setResponseUserData({ selectOptions: users });
     };
 
     getData();
@@ -31,6 +33,7 @@ const FunctionBasedForm = () => {
     event.preventDefault();
     console.log(email);
     console.log(password);
+    console.log(chosenOption);
   };
 
   return (
@@ -65,6 +68,14 @@ const FunctionBasedForm = () => {
             onChange={(event) => setPassword(event.target.value)}
           />
         </Col>
+      </FormGroup>
+      <FormGroup>
+        <Select
+          options={responseUserData.selectOptions}
+          onChange={(event) =>
+            setChosenOption({ id: event.value, name: event.label })
+          }
+        />
       </FormGroup>
       <FormGroup check row>
         <Col sm={{ size: "auto", offset: 8 }}>
