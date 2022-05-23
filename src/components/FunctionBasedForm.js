@@ -6,6 +6,7 @@ const FunctionBasedForm = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [responseUserData, setResponseUserData] = useState([]);
+  const [age, setAge] = useState("");
   const [chosenOption, setChosenOption] = useState({});
 
   useEffect(() => {
@@ -34,6 +35,7 @@ const FunctionBasedForm = () => {
     console.log(email);
     console.log(password);
     console.log(chosenOption);
+    console.log(age);
   };
 
   return (
@@ -76,6 +78,21 @@ const FunctionBasedForm = () => {
             setChosenOption({ id: event.value, name: event.label })
           }
         />
+      </FormGroup>
+      <FormGroup row>
+        <Label for="exampleAge" sm={2}>
+          Age
+        </Label>
+        <Col sm={8}>
+          <Input
+            type="age"
+            name="age"
+            id="exampleAge"
+            placeholder="30"
+            value={age}
+            onChange={(event) => setAge(event.target.value)}
+          />
+        </Col>
       </FormGroup>
       <FormGroup check row>
         <Col sm={{ size: "auto", offset: 8 }}>
