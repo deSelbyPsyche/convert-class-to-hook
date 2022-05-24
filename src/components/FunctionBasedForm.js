@@ -32,10 +32,16 @@ const FunctionBasedForm = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log(email);
-    console.log(password);
-    console.log(chosenOption);
-    console.log(age);
+
+    const completed_form = {
+      email: email,
+      password: password,
+      id: chosenOption.id,
+      name: chosenOption.name,
+      age: age,
+    };
+
+    console.log(completed_form);
   };
 
   return (
