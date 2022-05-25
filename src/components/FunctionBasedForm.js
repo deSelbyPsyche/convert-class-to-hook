@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Form, FormGroup, Input, Label, Col, Button } from "reactstrap";
+//import { Form, FormGroup, Input, Label, Col, Button } from "reactstrap";
 import Select from "react-select";
 
 const FunctionBasedForm = () => {
@@ -45,67 +45,49 @@ const FunctionBasedForm = () => {
   };
 
   return (
-    <Form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit}>
       <h1>Function Based Form</h1>
-      <FormGroup row>
-        <Label for="exampleEmail" sm={2}>
-          Email
-        </Label>
-        <Col sm={8}>
-          <Input
-            type="email"
-            name="email"
-            id="exampleEmail"
-            placeholder="email"
-            value={email}
-            onChange={(event) => setEmail(event.target.value)}
-          />
-        </Col>
-      </FormGroup>
-      <FormGroup row>
-        <Label for="examplePassword" sm={2}>
-          Password
-        </Label>
-        <Col sm={8}>
-          <Input
-            type="password"
-            name="password"
-            id="examplePassword"
-            placeholder="password"
-            value={password}
-            onChange={(event) => setPassword(event.target.value)}
-          />
-        </Col>
-      </FormGroup>
-      <FormGroup>
-        <Select
-          options={responseUserData.selectOptions}
-          onChange={(event) =>
-            setChosenOption({ id: event.value, name: event.label })
-          }
-        />
-      </FormGroup>
-      <FormGroup row>
-        <Label for="exampleAge" sm={2}>
-          Age
-        </Label>
-        <Col sm={8}>
-          <Input
-            type="age"
-            name="age"
-            id="exampleAge"
-            placeholder="30"
-            value={age}
-            onChange={(event) => setAge(event.target.value)}
-          />
-        </Col>
-      </FormGroup>
-      <FormGroup check row>
-        <Col sm={{ size: "auto", offset: 8 }}>
-          <Button>Submit</Button>
-        </Col>
-      </FormGroup>
-    </Form>
+      <label for="exampleEmail" sm={2}>
+        Email
+      </label>
+      <input
+        type="email"
+        name="email"
+        id="exampleEmail"
+        placeholder="email"
+        value={email}
+        onChange={(event) => setEmail(event.target.value)}
+      />
+      <label for="examplePassword" sm={2}>
+        Password
+      </label>
+      <input
+        type="password"
+        name="password"
+        id="examplePassword"
+        placeholder="password"
+        value={password}
+        onChange={(event) => setPassword(event.target.value)}
+      />
+      <Select
+        options={responseUserData.selectOptions}
+        onChange={(event) =>
+          setChosenOption({ id: event.value, name: event.label })
+        }
+      />
+      <label for="exampleAge" sm={2}>
+        Age
+      </label>
+      <input
+        type="age"
+        name="age"
+        id="exampleAge"
+        placeholder="30"
+        value={age}
+        onChange={(event) => setAge(event.target.value)}
+      />
+      <button>Submit</button>
+    </form>
   );
 };
 
