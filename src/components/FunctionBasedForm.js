@@ -6,6 +6,7 @@ import { Select, MenuItem } from "@mui/material";
 const FunctionBasedForm = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [responseRawData, setResponseRawData] = useState([]);
   const [responseUserData, setResponseUserData] = useState([]);
   const [age, setAge] = useState("");
   const [chosenOption, setChosenOption] = useState({});
@@ -23,12 +24,14 @@ const FunctionBasedForm = () => {
         label: item.name,
       }));
 
+      setResponseRawData(data);
       setResponseUserData({ selectOptions: users });
     };
 
     getData();
   }, []);
 
+  console.log(responseRawData);
   console.log(responseUserData);
 
   const handleSubmit = (event) => {
@@ -88,8 +91,8 @@ const FunctionBasedForm = () => {
           setChosenOption({ id: event.value, name: event.label })
         }
       >
-        {names.map((name) => (
-          <MenuItem value={name}>{name}</MenuItem>
+        {responseRawData.map((item) => (
+          <MenuItem value={item.name}>{item.name}</MenuItem>
         ))}
       </Select>
       <label for="exampleAge" sm={2}>
