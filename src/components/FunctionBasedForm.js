@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 //import { Form, FormGroup, Input, Label, Col, Button } from "reactstrap";
-import Select from "react-select";
+import { Select, MenuItem } from "@mui/material";
+// import Select from "react-select";
 
 const FunctionBasedForm = () => {
   const [email, setEmail] = useState("");
@@ -15,7 +16,7 @@ const FunctionBasedForm = () => {
         "https://jsonplaceholder.typicode.com/users"
       );
       const data = await response.json();
-      console.log(data);
+      //console.log(data);
 
       const users = data.map((item) => ({
         value: item.id,
@@ -44,6 +45,19 @@ const FunctionBasedForm = () => {
     console.log(completed_form);
   };
 
+  const names = [
+    "Oliver Hansen",
+    "Van Henry",
+    "April Tucker",
+    "Ralph Hubbard",
+    "Omar Alexander",
+    "Carlos Abbott",
+    "Miriam Wagner",
+    "Bradley Wilkerson",
+    "Virginia Andrews",
+    "Kelly Snyder",
+  ];
+
   return (
     <form onSubmit={handleSubmit}>
       <h1>Function Based Form</h1>
@@ -70,11 +84,14 @@ const FunctionBasedForm = () => {
         onChange={(event) => setPassword(event.target.value)}
       />
       <Select
-        options={responseUserData.selectOptions}
         onChange={(event) =>
           setChosenOption({ id: event.value, name: event.label })
         }
-      />
+      >
+        {names.map((name) => (
+          <MenuItem value={name}>{name}</MenuItem>
+        ))}
+      </Select>
       <label for="exampleAge" sm={2}>
         Age
       </label>
