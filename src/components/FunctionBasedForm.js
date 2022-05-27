@@ -48,19 +48,6 @@ const FunctionBasedForm = () => {
     console.log(completed_form);
   };
 
-  const names = [
-    "Oliver Hansen",
-    "Van Henry",
-    "April Tucker",
-    "Ralph Hubbard",
-    "Omar Alexander",
-    "Carlos Abbott",
-    "Miriam Wagner",
-    "Bradley Wilkerson",
-    "Virginia Andrews",
-    "Kelly Snyder",
-  ];
-
   return (
     <form onSubmit={handleSubmit}>
       <h1>Function Based Form</h1>
