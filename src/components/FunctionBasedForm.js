@@ -46,6 +46,7 @@ const FunctionBasedForm = () => {
     };
 
     console.log(completed_form);
+    console.log(chosenOption);
   };
 
   return (
@@ -73,11 +74,7 @@ const FunctionBasedForm = () => {
         value={password}
         onChange={(event) => setPassword(event.target.value)}
       />
-      <Select
-        onChange={(event) =>
-          setChosenOption({ id: event.value, name: event.label })
-        }
-      >
+      <Select onChange={(event) => setChosenOption(event.target)}>
         {responseRawData.map((item) => (
           <MenuItem value={item.name}>{item.name}</MenuItem>
         ))}
