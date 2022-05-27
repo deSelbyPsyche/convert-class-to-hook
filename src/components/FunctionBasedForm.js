@@ -74,7 +74,10 @@ const FunctionBasedForm = () => {
         value={password}
         onChange={(event) => setPassword(event.target.value)}
       />
-      <Select onChange={(event) => setChosenOption(event.target)}>
+      <Select
+        value={chosenOption.name}
+        onChange={(event) => setChosenOption(event.target)}
+      >
         {responseRawData.map((item) => (
           <MenuItem value={item.name}>{item.name}</MenuItem>
         ))}
