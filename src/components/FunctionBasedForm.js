@@ -6,10 +6,8 @@ import { Select, MenuItem } from "@mui/material";
 const FunctionBasedForm = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [responseRawData, setResponseRawData] = useState([]);
-  const [responseUserData, setResponseUserData] = useState([]);
   const [age, setAge] = useState("");
-  const [chosenOption, setChosenOption] = useState({});
+  const [chosenOption, setChosenOption] = useState({ id: null, name: "" });
   const [responseCleanArray, setResponseCleanArray] = useState([]);
 
   useEffect(() => {
@@ -26,16 +24,12 @@ const FunctionBasedForm = () => {
       }));
 
       setResponseCleanArray(users);
-      setResponseRawData(data);
-      setResponseUserData({ selectOptions: users });
     };
 
     getData();
   }, []);
 
   console.log(responseCleanArray);
-  console.log(responseRawData);
-  console.log(responseUserData);
 
   const handleSubmit = (event) => {
     event.preventDefault();
