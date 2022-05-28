@@ -8,7 +8,7 @@ const FunctionBasedForm = () => {
   const [password, setPassword] = useState("");
   const [age, setAge] = useState("");
   const [chosenOption, setChosenOption] = useState({ id: null, name: "" });
-  const [responseCleanArray, setResponseCleanArray] = useState([]);
+  const [dropdownOptions, setDropdownOptions] = useState([]);
 
   useEffect(() => {
     const getData = async () => {
@@ -23,13 +23,13 @@ const FunctionBasedForm = () => {
         name: item.name,
       }));
 
-      setResponseCleanArray(users);
+      setDropdownOptions(users);
     };
 
     getData();
   }, []);
 
-  console.log(responseCleanArray);
+  console.log(dropdownOptions);
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -73,9 +73,10 @@ const FunctionBasedForm = () => {
       />
       <Select
         value={chosenOption}
+        name={"usersFromAnotherAPI"}
         onChange={(event) => setChosenOption(event.target.value)}
       >
-        {responseCleanArray.map((item) => (
+        {dropdownOptions.map((item) => (
           <MenuItem key={item.id} value={item}>
             {item.name}
           </MenuItem>
