@@ -10,6 +10,7 @@ const FunctionBasedForm = () => {
   const [responseUserData, setResponseUserData] = useState([]);
   const [age, setAge] = useState("");
   const [chosenOption, setChosenOption] = useState({});
+  const [responseCleanArray, setResponseCleanArray] = useState([]);
 
   useEffect(() => {
     const getData = async () => {
@@ -20,10 +21,11 @@ const FunctionBasedForm = () => {
       //console.log(data);
 
       const users = data.map((item) => ({
-        value: item.id,
-        label: item.name,
+        id: item.id,
+        name: item.name,
       }));
 
+      setResponseCleanArray(users);
       setResponseRawData(data);
       setResponseUserData({ selectOptions: users });
     };
@@ -31,6 +33,7 @@ const FunctionBasedForm = () => {
     getData();
   }, []);
 
+  console.log(responseCleanArray);
   console.log(responseRawData);
   console.log(responseUserData);
 
@@ -75,11 +78,13 @@ const FunctionBasedForm = () => {
         onChange={(event) => setPassword(event.target.value)}
       />
       <Select
-        value={chosenOption.name}
-        onChange={(event) => setChosenOption(event.target)}
+        value={chosenOption}
+        onChange={(event) => setChosenOption(event.target.value)}
       >
-        {responseRawData.map((item) => (
-          <MenuItem value={item.name}>{item.name}</MenuItem>
+        {responseCleanArray.map((item) => (
+          <MenuItem key={item.id} value={item}>
+            {item.name}
+          </MenuItem>
         ))}
       </Select>
       <label for="exampleAge" sm={2}>
