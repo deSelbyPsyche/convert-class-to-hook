@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from "react";
 //import { Form, FormGroup, Input, Label, Col, Button } from "reactstrap";
-import Select from "react-select";
+import { Select, MenuItem } from "@mui/material";
+// import Select from "react-select";
 
 const FunctionBasedForm = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [responseUserData, setResponseUserData] = useState([]);
   const [age, setAge] = useState("");
-  const [chosenOption, setChosenOption] = useState({});
+  const [chosenOption, setChosenOption] = useState({ id: null, name: "" });
+  const [dropdownOptions, setDropdownOptions] = useState([]);
 
   useEffect(() => {
     const getData = async () => {
@@ -15,20 +16,20 @@ const FunctionBasedForm = () => {
         "https://jsonplaceholder.typicode.com/users"
       );
       const data = await response.json();
-      console.log(data);
+      //console.log(data);
 
       const users = data.map((item) => ({
-        value: item.id,
-        label: item.name,
+        id: item.id,
+        name: item.name,
       }));
 
-      setResponseUserData({ selectOptions: users });
+      setDropdownOptions(users);
     };
 
     getData();
   }, []);
 
-  console.log(responseUserData);
+  console.log(dropdownOptions);
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -42,6 +43,7 @@ const FunctionBasedForm = () => {
     };
 
     console.log(completed_form);
+    console.log(chosenOption);
   };
 
   return (
@@ -70,11 +72,16 @@ const FunctionBasedForm = () => {
         onChange={(event) => setPassword(event.target.value)}
       />
       <Select
-        options={responseUserData.selectOptions}
-        onChange={(event) =>
-          setChosenOption({ id: event.value, name: event.label })
-        }
-      />
+        value={chosenOption}
+        name={"usersFromAnotherAPI"}
+        onChange={(event) => setChosenOption(event.target.value)}
+      >
+        {dropdownOptions.map((item) => (
+          <MenuItem key={item.id} value={item}>
+            {item.name}
+          </MenuItem>
+        ))}
+      </Select>
       <label for="exampleAge" sm={2}>
         Age
       </label>
